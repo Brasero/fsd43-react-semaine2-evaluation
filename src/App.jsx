@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.scss'
+import Nav from "./component/Nav/index.jsx";
+import {Route, Routes} from "react-router-dom";
+import ToDoList from "./pages/ToDoList/index.jsx";
+import ToDoForm from "./pages/ToDoForm/index.jsx";
+import UpdateTodoForm from "./pages/UpdateTodoForm/index.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <main className={'app'}>
+            <header className={'app__header'}>
+                <h1>To Do List</h1>
+                <Nav/>
+            </header>
+            <div className={"app__page"}>
+                <Routes>
+                    <Route path={'/'} element={<ToDoList/>}/>
+                    <Route path={'/add'} element={<ToDoForm />}/>
+                    <Route path={'/update/:id'} element={<UpdateTodoForm />} />
+                </Routes>
+            </div>
+        </main>
+    )
 }
 
 export default App
